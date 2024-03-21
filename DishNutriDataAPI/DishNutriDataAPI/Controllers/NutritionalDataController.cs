@@ -6,7 +6,7 @@ using DishNutriDataAPI.Requests;
 namespace DishNutriDataAPI.Controllers
 {
     [ApiController]
-    [Route("getNutritionalData")]
+    [Route("NutritionalData")]
     public class NutritionalDataController : ControllerBase
     {
         IMediator mediator;
@@ -16,7 +16,7 @@ namespace DishNutriDataAPI.Controllers
             this.mediator = mediator;
         }
 
-        [HttpPost(Name = "GetNutritionalData")]
+        [HttpPost(Name = "NutritionalData")]
         [Produces(typeof(NutritionalData))]
         public async Task<NutritionalData> Post([FromBody] Dictionary<string, int> ingredientsWithWeight)
         {

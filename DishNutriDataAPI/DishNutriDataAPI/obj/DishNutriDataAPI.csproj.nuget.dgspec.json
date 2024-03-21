@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Jonas\\source\\repos\\DishNutriDataAPI\\DishNutriDataAPI\\DishNutriDataAPI.csproj": {}
+    "C:\\Users\\Jonas\\source\\repos\\NutriDataAPI\\DishNutriDataAPI\\DishNutriDataAPI\\DishNutriDataAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Jonas\\source\\repos\\DishNutriDataAPI\\DishNutriDataAPI\\DishNutriDataAPI.csproj": {
+    "C:\\Users\\Jonas\\source\\repos\\NutriDataAPI\\DishNutriDataAPI\\DishNutriDataAPI\\DishNutriDataAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Jonas\\source\\repos\\DishNutriDataAPI\\DishNutriDataAPI\\DishNutriDataAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Jonas\\source\\repos\\NutriDataAPI\\DishNutriDataAPI\\DishNutriDataAPI\\DishNutriDataAPI.csproj",
         "projectName": "DishNutriDataAPI",
-        "projectPath": "C:\\Users\\Jonas\\source\\repos\\DishNutriDataAPI\\DishNutriDataAPI\\DishNutriDataAPI.csproj",
+        "projectPath": "C:\\Users\\Jonas\\source\\repos\\NutriDataAPI\\DishNutriDataAPI\\DishNutriDataAPI\\DishNutriDataAPI.csproj",
         "packagesPath": "C:\\Users\\Jonas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Jonas\\source\\repos\\DishNutriDataAPI\\DishNutriDataAPI\\obj\\",
+        "outputPath": "C:\\Users\\Jonas\\source\\repos\\NutriDataAPI\\DishNutriDataAPI\\DishNutriDataAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Jonas\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WLiOdgzHxb0B35Y9Q4IcuIh6/3AilMPikbcfvr4lmcfx9FJ6oI7OLjyTC/TL86VlT0e146/WqA3Dcde39QRlgg==",
+  "dgSpecHash": "NhVoHBkTf7UE70WVUt4etumtrm37XQLgmdHuBw58iY4jPnMxv0m11PyML5AIKVi6TiHCkKAY3N3va9ivjuc+6g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Jonas\\source\\repos\\DishNutriDataAPI\\DishNutriDataAPI\\DishNutriDataAPI.csproj",
+  "projectFilePath": "C:\\Users\\Jonas\\source\\repos\\NutriDataAPI\\DishNutriDataAPI\\DishNutriDataAPI\\DishNutriDataAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Jonas\\.nuget\\packages\\mediatr\\12.2.0\\mediatr.12.2.0.nupkg.sha512",
     "C:\\Users\\Jonas\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
