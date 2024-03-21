@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  nutri-data-api:
+    build:
+      context: ./DishNutriDataAPI
+      dockerfile: Dockerfile
+    ports:
+      - 5263:5263
+
+  ingredients-suggestions-api:
+    build:
+      context: ./IngredientsSuggestionAPI
+      dockerfile: Dockerfile
+    ports:
+      - 5263:5263
+
+  mass-prediction-api:
+    build:
+      context: ./MassPredictionAPI
+      dockerfile: Dockerfile
+    ports:
+      - ${MASS_PREDICTION_API_PORT}:80
+
