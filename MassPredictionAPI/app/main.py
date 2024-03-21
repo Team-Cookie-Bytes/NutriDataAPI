@@ -6,7 +6,7 @@ app = FastAPI()
 
 
 class MassPrediction(BaseModel):
-    ingredients: str
+    ingredient: str
     mass: float
 
 
@@ -20,6 +20,4 @@ async def get_mass_prediction(
     img: UploadFile = File(...),
     ingredients: List[str] = Form(...),
 ) -> MassPrediction:
-    print(img.filename)
-    print(ingredients)
-    return List[MassPrediction(mass=13)]
+    return [MassPrediction(ingredient=i, mass=13) for i in ingredients]
