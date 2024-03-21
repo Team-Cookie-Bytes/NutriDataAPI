@@ -6,6 +6,8 @@ WORKDIR .
 
 COPY . .
 
+RUN dotnet restore
+
 RUN dotnet build
 
 WORKDIR ./DishNutriDataAPI

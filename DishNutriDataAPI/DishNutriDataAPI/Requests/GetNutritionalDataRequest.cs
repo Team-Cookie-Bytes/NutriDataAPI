@@ -5,8 +5,8 @@ namespace DishNutriDataAPI.Requests
 {
     public class GetNutritionalDataRequest : IRequest<NutritionalData>
     {
-        public Dictionary<string, int> IngredientsWithWeight { get; }
-        public GetNutritionalDataRequest(Dictionary<string, int> ingredientsWithWeight)
+        public List<Dictionary<string, object>> IngredientsWithWeight { get; }
+        public GetNutritionalDataRequest(List<Dictionary<string, object>> ingredientsWithWeight)
         {
             IngredientsWithWeight = ingredientsWithWeight;
         }
