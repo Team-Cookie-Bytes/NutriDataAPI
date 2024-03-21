@@ -1,6 +1,10 @@
 from typing import List
-from fastapi import FastAPI, File, UploadFile
+from fastapi import FastAPI
 from pydantic import BaseModel
+import base64
+import io
+from PIL import Image
+import numpy as np
 from .predictor import Predictor
 
 app = FastAPI()
@@ -18,6 +22,8 @@ async def root():
 
 @app.post("/ingredients-suggestions")
 async def get_ingredients_suggestions(body: Body) -> List[str]:
-    print(body.base64image)
-    return ["apple", "banana", "cherry"]
+    imgdata = base64.b64decode(body.base64image)
+    img = np.array(Image.open(io.BytesIO(imgdata)))
+    print(img.shape)
     # return predictor.predict(img)
+    return ["apple", "banana", "cherry"]
