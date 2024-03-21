@@ -1,10 +1,10 @@
 ﻿using MediatR;
 using Newtonsoft.Json.Linq;
 using System.Reflection;
-using NutriDataAPI.Models;
-using NutriDataAPI.Requests;
+using DishNutriDataAPI.Models;
+using DishNutriDataAPI.Requests;
 
-namespace NutriDataAPI.Commands
+namespace DishNutriDataAPI.Commands
 {
     public class GetNutritionalDataCommand : IRequestHandler<GetNutritionalDataRequest, NutritionalData>
     {

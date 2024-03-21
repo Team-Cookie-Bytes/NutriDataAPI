@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using NutriDataAPI.Models;
+using DishNutriDataAPI.Models;
 
-namespace NutriDataAPI.Requests
+namespace DishNutriDataAPI.Requests
 {
     public class GetNutritionalDataRequest : IRequest<NutritionalData>
     {

@@ -1,9 +1,9 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using NutriDataAPI.Models;
-using NutriDataAPI.Requests;
+using DishNutriDataAPI.Models;
+using DishNutriDataAPI.Requests;
 
-namespace NutriDataAPI.Controllers
+namespace DishNutriDataAPI.Controllers
 {
     [ApiController]
     [Route("getNutritionalData")]
