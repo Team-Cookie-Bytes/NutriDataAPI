@@ -10,15 +10,15 @@ services:
 
   ingredients-suggestions-api:
     build:
-      context: ./IngredientsSuggestionAPI
+      context: ./IngredientsSuggestionsAPI
       dockerfile: Dockerfile
     ports:
-      - 5263:5263
+      - 8000:80
 
   mass-prediction-api:
     build:
       context: ./MassPredictionAPI
       dockerfile: Dockerfile
     ports:
-      - ${MASS_PREDICTION_API_PORT}:80
+      - 8001:80
 
