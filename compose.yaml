@@ -3,10 +3,10 @@ version: "3.8"
 services:
   nutri-data-api:
     build:
-      context: ./DishNutriDataAPI
+      context: ./DishNutriDataAPI/DishNutriDataAPI
       dockerfile: Dockerfile
     ports:
-      - 5263:5263
+      - 80:80
 
   ingredients-suggestions-api:
     build:
