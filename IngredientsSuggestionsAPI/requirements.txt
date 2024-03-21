@@ -4,6 +4,5 @@ uvicorn>=0.15.0,<0.16.0
 python-multipart
 torch
 torchvision
-pickle
-sklearn
+scikit-learn
 pandas
