@@ -22,22 +22,19 @@ class Predictor:
 
         self.df = pd.read_csv("./state/ingredients_metadata.csv")
 
-    def predict(self, img=None, topk=5) -> List[Tuple[str, float]]:
+    def predict(self, img=None, topk=5) -> List[str]:
         tensor = torch.FloatTensor(img)[None, :, :, :]
         # print(tensor.shape)
 
         output = self.model(tensor)
         # print(output)
 
-        probabilities = torch.nn.functional.softmax(output, dim=1)[0]
-        # print(probabilities)
-
-        top_probs, indices = torch.topk(probabilities, topk)
+        _, indices = torch.topk(output, topk)
         # print(indices)
         # print(top_probs.tolist())
 
         # Create a zeros tensor of the same shape
-        mask = torch.zeros_like(probabilities)
+        mask = torch.zeros_like(output)
         # print(mask)
 
         # Set the top 1 position to 1
@@ -53,4 +50,4 @@ class Predictor:
         ]
         # print(ingredient_names)
 
-        return list(zip(ingredient_names, top_probs.tolist()))
+        return ingredient_names
