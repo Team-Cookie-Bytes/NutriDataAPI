@@ -17,7 +17,7 @@ namespace DishNutriDataAPI.Commands
             {
                 try
                 {
-                    var ingredientsString = string.Join('+',request.IngredientsWithWeight.Select(x => x["name"]));
+                    var ingredientsString = string.Join('+',request.IngredientsWithWeight.Select(x => x["ingredient"]));
 
                     client.BaseAddress = new Uri("https://api.api-ninjas.com/v1/");
                     client.DefaultRequestHeaders.Add("X-Api-Key", Environment.GetEnvironmentVariable("ninja-api-key"));
@@ -38,24 +38,25 @@ namespace DishNutriDataAPI.Commands
                             }
                             foreach (PropertyInfo prop in result.GetType().GetProperties())
                             {
-                                decimal? previousValue = (decimal?)(prop.GetValue(result));
-                                decimal? ValueOfIngPer100g = (decimal?)ingredientNutriData[prop.Name];
+                                decimal previousValue = (decimal)(prop.GetValue(result));
+                                decimal ValueOfIngPer100g = (decimal)ingredientNutriData[prop.Name];
 
-                                if (ValueOfIngPer100g is null || previousValue is null || request.IngredientsWithWeight.Find(x => x.ContainsValue(ingredientName)).Count() == 0)
+                                if (request.IngredientsWithWeight.Find(x => x.ContainsValue(ingredientName)).Count() == 0)
                                 {
                                     prop.SetValue(result, null);
                                 }
                                 else
                                 {
-                                    decimal? newValue;
+                                    decimal newValue;
                                     if (ValueOfIngPer100g == 0)
                                     {
                                         newValue = 0;
                                     }
                                     else
                                     { 
-                                        newValue = ((decimal)request.IngredientsWithWeight.Find(x => x.Values.Contains(ingredientName)).FirstOrDefault().Value / 100) * ValueOfIngPer100g;
-
+                                        double ingredientMass = (double)request.IngredientsWithWeight.Find(x => x.Values.Contains(ingredientName))["mass"];
+                                        
+                                        newValue = (decimal)ingredientMass / 100 * (decimal)ValueOfIngPer100g;
                                     }
                                     prop.SetValue(result, previousValue + newValue);
                                 }
