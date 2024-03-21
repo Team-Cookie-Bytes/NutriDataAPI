@@ -13,8 +13,8 @@ namespace DishNutriDataAPI.Commands
             
 
             // Create a new HttpRequestMessage with the multipart content
-            var requestMessage = new HttpRequestMessage(HttpMethod.Post, Environment.GetEnvironmentVariable("ingredients-suggestion-api-url") + "/ingredients-suggestion");
-            requestMessage.Content = new StringContent($"{{\"file\":\"{request.Base64File}\"}}", Encoding.UTF8, "application/json");
+            var requestMessage = new HttpRequestMessage(HttpMethod.Post, Environment.GetEnvironmentVariable("ingredients-suggestion-api-url") + "/ingredients-suggestions");
+            requestMessage.Content = new StringContent($"{{\"base64image\":\"{request.Base64File}\"}}", Encoding.UTF8, "application/json");
 
             using (HttpClient client = new HttpClient())
             {

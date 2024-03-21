@@ -12,9 +12,10 @@ namespace DishNutriDataAPI.Commands
         {
             var result = new List<Dictionary<string, object>>();
             
-            // Create a new HttpRequestMessage with the multipart content
             var requestMessage = new HttpRequestMessage(HttpMethod.Post, Environment.GetEnvironmentVariable("mass-prediction-api-url") + "/mass-prediction");
-            requestMessage.Content = new StringContent($"{{\"file\":\"{request.Base64File}\",\"ingredients\":{request.Ingredients.ToString()}}}", Encoding.UTF8, "application/json");
+            var ingredString = "[\""+string.Join("\",\"", request.Ingredients)+"\"]";
+            requestMessage.Content = new StringContent($"{{\"base64image\":\"{request.Base64File}\",\"ingredients\":{ingredString}}}", Encoding.UTF8, "application/json");
+            var test = $"{{\"base64image\":\"{request.Base64File}\",\"ingredients\":{ingredString}}}";
 
             using (HttpClient client = new HttpClient())
             {
@@ -30,7 +31,7 @@ namespace DishNutriDataAPI.Commands
                             string jsonString = item.ToString();
 
                             Dictionary<string, object> items = JsonConvert.DeserializeObject<Dictionary<string, object>>(jsonString);
-                            var ingredient = items["irgendient"];
+                            var ingredient = items["ingredient"];
                             var mass = items["mass"];
                             result.Add(new Dictionary<string, object> { { "ingredient", ingredient }, { "mass", mass } });
                         }
