@@ -17,7 +17,7 @@ namespace DishNutriDataAPI.Commands
             {
                 try
                 {
-                    var ingredientsString = string.Join('+',request.IngredientsWithWeight.Keys);
+                    var ingredientsString = string.Join('+',request.IngredientsWithWeight.Select(x => x["name"]));
 
                     client.BaseAddress = new Uri("https://api.api-ninjas.com/v1/");
                     client.DefaultRequestHeaders.Add("X-Api-Key", Environment.GetEnvironmentVariable("ninja-api-key"));
@@ -41,7 +41,7 @@ namespace DishNutriDataAPI.Commands
                                 decimal? previousValue = (decimal?)(prop.GetValue(result));
                                 decimal? ValueOfIngPer100g = (decimal?)ingredientNutriData[prop.Name];
 
-                                if (ValueOfIngPer100g is null || previousValue is null || !request.IngredientsWithWeight.ContainsKey(ingredientName))
+                                if (ValueOfIngPer100g is null || previousValue is null || request.IngredientsWithWeight.Find(x => x.ContainsValue(ingredientName)).Count() == 0)
                                 {
                                     prop.SetValue(result, null);
                                 }
@@ -53,8 +53,9 @@ namespace DishNutriDataAPI.Commands
                                         newValue = 0;
                                     }
                                     else
-                                    {
-                                        newValue = ((decimal) request.IngredientsWithWeight[ingredientName] / 100) * ValueOfIngPer100g;
+                                    { 
+                                        newValue = ((decimal)request.IngredientsWithWeight.Find(x => x.Values.Contains(ingredientName)).FirstOrDefault().Value / 100) * ValueOfIngPer100g;
+
                                     }
                                     prop.SetValue(result, previousValue + newValue);
                                 }
