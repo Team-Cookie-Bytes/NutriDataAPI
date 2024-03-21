@@ -14,13 +14,13 @@ class Predictor:
         num_ftrs = self.model.classifier[3].in_features
         self.model.classifier[3] = torch.nn.Linear(num_ftrs, num_classes)
 
-        with open("./state/model_state.pt", "rb") as f:
+        with open("./app/state/model_state.pt", "rb") as f:
             self.model.load_state_dict(load(f))
 
-        with open("./state/mlb.pkl", "rb") as f:
+        with open("./app/state/mlb.pkl", "rb") as f:
             self.mlb: MultiLabelBinarizer = pickle.load(f)
 
-        self.df = pd.read_csv("./state/ingredients_metadata.csv")
+        self.df = pd.read_csv("./app/state/ingredients_metadata.csv")
 
     def predict(self, img=None, topk=5) -> List[str]:
         tensor = torch.FloatTensor(img)[None, :, :, :]
