@@ -7,9 +7,20 @@ from sklearn.preprocessing import MultiLabelBinarizer
 import pandas as pd
 
 
+def get_center_crop(image, crop_w, crop_h):
+    h, w = image.shape[:2]
+    assert crop_w < w and crop_h < h
+
+    start_x = w // 2 - crop_w // 2
+    start_y = h // 2 - crop_h // 2
+
+    return image[start_y : start_y + crop_h, start_x : start_x + crop_w]
+
+
 class Predictor:
     def __init__(self, num_classes=247):
         self.model = torchvision.models.mobilenet_v3_small()
+        self.model.eval()
 
         num_ftrs = self.model.classifier[3].in_features
         self.model.classifier[3] = torch.nn.Linear(num_ftrs, num_classes)
@@ -22,20 +33,22 @@ class Predictor:
 
         self.df = pd.read_csv("./app/state/ingredients_metadata.csv")
 
-    def predict(self, img=None, topk=5) -> List[str]:
+    def predict(self, img, topk=5) -> List[str]:
+        img = get_center_crop(img, 640, 480)
+
         tensor = torch.FloatTensor(img)[None, :, :, :]
         # print(tensor.shape)
 
-        output = self.model(tensor)
+        output = self.model(tensor)[0]
+        output = torch.sigmoid(output)
         # print(output)
 
-        _, indices = torch.topk(output, topk)
+        values, indices = torch.topk(output, topk)
         # print(indices)
-        # print(top_probs.tolist())
 
         # Create a zeros tensor of the same shape
         mask = torch.zeros_like(output)
-        # print(mask)
+        # print(mask.shape)
 
         # Set the top 1 position to 1
         mask[indices] = 1
