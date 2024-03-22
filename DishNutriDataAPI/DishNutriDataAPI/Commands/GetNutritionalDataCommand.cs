@@ -6,8 +6,17 @@ using DishNutriDataAPI.Requests;
 
 namespace DishNutriDataAPI.Commands
 {
+    /// <summary>
+    /// Command to get nutritional data for a given image with ingredients list.
+    /// </summary>
     public class GetNutritionalDataCommand : IRequestHandler<GetNutritionalDataRequest, NutritionalData>
     {
+        /// <summary>
+        /// Get nutritional data for the image and the ingredients list.
+        /// </summary>
+        /// <param name="request">request with parameters for command.</param>
+        /// <param name="cancellationToken">cancelation token.</param>
+        /// <returns></returns>
         public async Task<NutritionalData> Handle(GetNutritionalDataRequest request, CancellationToken cancellationToken)
         {
             var result = new NutritionalData();

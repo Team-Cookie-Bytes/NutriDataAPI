@@ -1,10 +1,15 @@
 ﻿namespace DishNutriDataAPI.Properties
 {
     using System;
-    using System.IO;
 
+    /// <summary>
+    /// Class for reading in the Environment Variables for the Program.
+    /// </summary>
     public static class DotEnv
     {
+        /// <summary>
+        /// Loads the data from the .env file into the environment variables
+        /// </summary>
         public static void Load()
         {
             // if (!File.Exists("../src/.env")) 

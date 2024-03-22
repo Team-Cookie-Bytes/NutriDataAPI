@@ -1,13 +1,22 @@
-﻿using DishNutriDataAPI.Requests;
-using MediatR;
+﻿using MediatR;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Text;
+using DishNutriDataAPI.Requests;
 
 namespace DishNutriDataAPI.Commands
 {
+    /// <summary>
+    /// Command to predict the mass of given ingredients.
+    /// </summary>
     public class GetMassPredictionCommand : IRequestHandler<GetMassPredictionRequest, List<Dictionary<string, object>>>
     {
+        /// <summary>
+        /// Predicts the mass for the parameters (image and ingredients list).
+        /// </summary>
+        /// <param name="request">request with parameters for command.</param>
+        /// <param name="cancellationToken">cancelation token.</param>
+        /// <returns></returns>
         public async Task<List<Dictionary<string, object>>> Handle(GetMassPredictionRequest request, CancellationToken cancellationToken)
         {
             var result = new List<Dictionary<string, object>>();

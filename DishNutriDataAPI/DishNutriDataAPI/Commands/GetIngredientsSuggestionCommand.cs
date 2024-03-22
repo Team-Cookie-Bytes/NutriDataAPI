@@ -1,18 +1,25 @@
-﻿using DishNutriDataAPI.Requests;
-using MediatR;
+﻿using MediatR;
 using Newtonsoft.Json.Linq;
 using System.Text;
+using DishNutriDataAPI.Requests;
 
 namespace DishNutriDataAPI.Commands
 {
+    /// <summary>
+    /// Class to receive the Ingredients Suggestions for a given image.
+    /// </summary>
     public class GetIngredientsSuggestionCommand : IRequestHandler<GetIngredientsSuggestionRequest, List<string>>
     {
+        /// <summary>
+        /// Gets Suggestions for Ingredients in a given image.
+        /// </summary>
+        /// <param name="request">request for passing the parameters for the command.</param>
+        /// <param name="cancellationToken">cancelation token.</param>
+        /// <returns>Ingredients suggestions.</returns>
         public async Task<List<string>> Handle(GetIngredientsSuggestionRequest request, CancellationToken cancellationToken)
         {
             var result = new List<string>();
             
-
-            // Create a new HttpRequestMessage with the multipart content
             var requestMessage = new HttpRequestMessage(HttpMethod.Post, Environment.GetEnvironmentVariable("ingredients-suggestion-api-url") + "/ingredients-suggestions");
             requestMessage.Content = new StringContent($"{{\"base64image\":\"{request.Base64File}\"}}", Encoding.UTF8, "application/json");
 
