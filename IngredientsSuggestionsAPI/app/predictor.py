@@ -5,16 +5,35 @@ from torch import load
 import pickle
 from sklearn.preprocessing import MultiLabelBinarizer
 import pandas as pd
+import numpy as np
+
+
+def sort_tensors_based_on_first(tensor1, tensor2):
+    # Sort tensor1 and get the indices
+    sorted_tensor1, indices = torch.sort(tensor1)
+
+    # Reorder tensor2 using indices
+    sorted_tensor2 = tensor2[indices]
+
+    return sorted_tensor1, sorted_tensor2
+
+
+def make_horizontal(img):
+    c, h, w = img.shape
+    if h > w:
+        return np.reshape(img, (c, w, h))
+    else:
+        return img
 
 
 def get_center_crop(image, crop_w, crop_h):
-    h, w = image.shape[:2]
+    _, h, w = image.shape
     assert crop_w < w and crop_h < h
 
     start_x = w // 2 - crop_w // 2
     start_y = h // 2 - crop_h // 2
 
-    return image[start_y : start_y + crop_h, start_x : start_x + crop_w]
+    return image[:, start_y : start_y + crop_h, start_x : start_x + crop_w]
 
 
 class Predictor:
@@ -34,6 +53,7 @@ class Predictor:
         self.df = pd.read_csv("./app/state/ingredients_metadata.csv")
 
     def predict(self, img, topk=5) -> List[str]:
+        img = make_horizontal(img)
         img = get_center_crop(img, 640, 480)
 
         tensor = torch.FloatTensor(img)[None, :, :, :]
@@ -44,6 +64,7 @@ class Predictor:
         # print(output)
 
         values, indices = torch.topk(output, topk)
+        values, indices = sort_tensors_based_on_first(values, indices)
         # print(indices)
 
         # Create a zeros tensor of the same shape

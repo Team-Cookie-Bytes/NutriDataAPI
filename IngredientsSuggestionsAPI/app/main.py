@@ -28,5 +28,7 @@ async def get_ingredients_suggestions(body: Body) -> List[str]:
     # img = cv2.imread("./app/test.jpg", cv2.IMREAD_COLOR)
     img = np.transpose(img, (2, 0, 1))
     print(img.shape)
-    return predictor.predict(img)
+    pred = predictor.predict(img)
+    print(pred)
+    return pred
     # return ["apple", "banana", "cherry"]
