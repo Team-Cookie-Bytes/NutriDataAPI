@@ -2,6 +2,9 @@
 
 namespace DishNutriDataAPI.Requests
 {
+    /// <summary>
+    /// Request for predicting of the mass of given ingredients.
+    /// </summary>
     public class GetMassPredictionRequest : IRequest<List<Dictionary<string, object>>>
     {
         public string Base64File { get; set; }

@@ -4,7 +4,6 @@ WORKDIR /app
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 COPY . /src
 WORKDIR /src
-RUN ls
 RUN dotnet build "DishNutriDataAPI.csproj" -c Release -o /app/build
 
 FROM build AS publish

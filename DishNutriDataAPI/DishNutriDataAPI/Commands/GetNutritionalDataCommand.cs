@@ -16,7 +16,7 @@ namespace DishNutriDataAPI.Commands
         /// </summary>
         /// <param name="request">request with parameters for command.</param>
         /// <param name="cancellationToken">cancelation token.</param>
-        /// <returns></returns>
+        /// <returns>Nutritional data shown in image.</returns>
         public async Task<NutritionalData> Handle(GetNutritionalDataRequest request, CancellationToken cancellationToken)
         {
             var result = new NutritionalData();
@@ -47,7 +47,7 @@ namespace DishNutriDataAPI.Commands
                             }
                             foreach (PropertyInfo prop in result.GetType().GetProperties())
                             {
-                                decimal previousValue = (decimal)(prop.GetValue(result));
+                                decimal previousValue = (decimal)prop.GetValue(result);
                                 decimal ValueOfIngPer100g = (decimal)ingredientNutriData[prop.Name];
 
                                 if (request.IngredientsWithWeight.Find(x => x.ContainsValue(ingredientName)).Count() == 0)

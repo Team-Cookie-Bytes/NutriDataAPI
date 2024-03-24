@@ -3,7 +3,7 @@
     using System;
 
     /// <summary>
-    /// Class for reading in the Environment Variables for the Program.
+    /// Class for reading in the environment variables for the Program.
     /// </summary>
     public static class DotEnv
     {
@@ -12,12 +12,6 @@
         /// </summary>
         public static void Load()
         {
-            // if (!File.Exists("../src/.env")) 
-            // {
-            //     Console.WriteLine("No .env file found.");
-            //     return;
-            // }
-
             var lines = new List<string>(){"ninja-api-key=EhSt/g5ZPWfUuxliMdRhpA==40xttVIR7w4urloS", "mass-prediction-api-url=http://mass-prediction-api:80", "ingredients-suggestion-api-url=http://ingredients-suggestions-api:80"};
                 
             foreach (var line in lines)

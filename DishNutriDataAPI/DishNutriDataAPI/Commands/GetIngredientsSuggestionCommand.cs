@@ -6,12 +6,12 @@ using DishNutriDataAPI.Requests;
 namespace DishNutriDataAPI.Commands
 {
     /// <summary>
-    /// Class to receive the Ingredients Suggestions for a given image.
+    /// Class to receive the ingredients suggestions for a given image.
     /// </summary>
     public class GetIngredientsSuggestionCommand : IRequestHandler<GetIngredientsSuggestionRequest, List<string>>
     {
         /// <summary>
-        /// Gets Suggestions for Ingredients in a given image.
+        /// Gets suggestions for ingredients in a given image.
         /// </summary>
         /// <param name="request">request for passing the parameters for the command.</param>
         /// <param name="cancellationToken">cancelation token.</param>

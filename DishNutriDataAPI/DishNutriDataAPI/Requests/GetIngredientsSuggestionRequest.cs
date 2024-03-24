@@ -2,6 +2,9 @@
 
 namespace DishNutriDataAPI.Requests
 {
+    /// <summary>
+    /// Class for the request to receive the ingredients suggestions for a given image.
+    /// </summary>
     public class GetIngredientsSuggestionRequest : IRequest<List<string>>
     {
         public string Base64File { get; set; }
